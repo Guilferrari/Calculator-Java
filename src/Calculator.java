@@ -7,9 +7,9 @@ public class Calculator implements ActionListener {
     JFrame frame;
     JTextField textfield;
     JButton[] numberButtons = new JButton[10];
-    JButton[] functionButtons = new JButton[8];
+    JButton[] functionButtons = new JButton[9];
     JButton addButton,subButton,mulButton,divButton;
-    JButton decButton,equButton,delButton,clrButton,perButton;
+    JButton decButton,equButton,delButton,clrButton,negButton;
     JPanel panel;
 
     Font myFont = new Font("Roboto",Font.BOLD,30);
@@ -37,7 +37,7 @@ public class Calculator implements ActionListener {
         equButton = new JButton("=");
         delButton = new JButton("<-");
         clrButton = new JButton("C");
-        perButton = new JButton("%");
+        negButton = new JButton("(-)");
 
         functionButtons[0] = addButton;
         functionButtons[1] = subButton;
@@ -47,8 +47,9 @@ public class Calculator implements ActionListener {
         functionButtons[5] = equButton;
         functionButtons[6] = delButton;
         functionButtons[7] = clrButton;
+        functionButtons[8] = negButton;
 
-        for(int i = 0; i < 8; i++) {
+        for(int i = 0; i < 9; i++) {
             functionButtons[i].addActionListener(this);
             functionButtons[i].setFont(myFont);
             functionButtons[i].setFocusable(false);
@@ -82,8 +83,8 @@ public class Calculator implements ActionListener {
         panel.add(numberButtons[2]);
         panel.add(numberButtons[3]);
         panel.add(equButton);
-        panel.add(perButton);
         panel.add(decButton);
+        panel.add(negButton);
         panel.add(numberButtons[0]);
 
         frame.add(equButton);
@@ -156,6 +157,12 @@ public class Calculator implements ActionListener {
                 for(int i = 0; i < string.length()-1; i++) {
                     textfield.setText(textfield.getText()+string.charAt(i));
                 }
+            }
+            if(e.getSource()== negButton) {
+               double temp = Double.parseDouble(textfield.getText());
+               temp *= -1;
+               textfield.setText(String.valueOf(temp));
+
             }
 
     }
