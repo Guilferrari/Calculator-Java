@@ -61,12 +61,10 @@ public class Calculator implements ActionListener {
             numberButtons[i].setFocusable(false);
         }
 
-
         equButton.setBounds(205,348,145,52);
         panel = new JPanel();
         panel.setBounds(50,100,300,300);
         panel.setLayout(new GridLayout(5,4,10,10));
-
 
         panel.add(clrButton);
         panel.add(divButton);
@@ -87,9 +85,6 @@ public class Calculator implements ActionListener {
         panel.add(perButton);
         panel.add(decButton);
         panel.add(numberButtons[0]);
-
-
-
 
         frame.add(equButton);
         frame.add(panel);
@@ -151,7 +146,17 @@ public class Calculator implements ActionListener {
                 }
                 textfield.setText(String.valueOf(result));
                 num1 = result;
-        }
+            }
+            if(e.getSource()== clrButton) {
+                textfield.setText("");
+            }
+            if(e.getSource()== delButton) {
+                String string = textfield.getText();
+                textfield.setText("");
+                for(int i = 0; i < string.length()-1; i++) {
+                    textfield.setText(textfield.getText()+string.charAt(i));
+                }
+            }
 
     }
 }
