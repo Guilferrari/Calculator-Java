@@ -102,6 +102,8 @@ public class Frames implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        Calc calc = new Calc();
+
         for(int i=0; i<10; i++) {
             if(e.getSource() == numberButtons[i]) {
                 textfield.setText(textfield.getText().concat(String.valueOf(i)));
@@ -131,22 +133,25 @@ public class Frames implements ActionListener {
             textfield.setText("");
         }
         if(e.getSource() == equButton) {
-            num2 = Double.parseDouble(textfield.getText());
-            if(operator == '+'){
-                result = Calc.som(num1, num2);
-            }
-            if(operator == '-'){
-                result = Calc.sub(num1, num2);
-            }
-            if(operator == '*'){
-                result = Calc.div(num1, num2);
-            }
-            if(operator == '/'){
-                result = Calc.mult(num1, num2);
-            }
 
+            num2 = Double.parseDouble(textfield.getText());
+            switch(operator){
+                case'+':
+                    result = calc.som(num1, num2);
+                    break;
+                case'-':
+                    result = calc.sub(num1, num2);
+                    break;
+                case'x':
+                    result = calc.mult(num1, num2);
+                    break;
+                case'/':
+                    result = calc.div(num1, num2);
+                    break;
+            }
             textfield.setText(String.valueOf(result));
             num1 = result;
+
         }
         if(e.getSource()== clrButton) {
             textfield.setText("");
