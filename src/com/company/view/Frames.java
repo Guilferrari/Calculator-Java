@@ -4,7 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import com.company.model.Calc;
+import com.company.model.CalcFactory;
+import com.company.model.Operational;
 
 public class Frames implements ActionListener {
 
@@ -17,7 +18,7 @@ public class Frames implements ActionListener {
     JPanel panel;
 
     double num1=0,num2=0,result=0;
-    char operator;
+    String operator;
 
     public void init() {
 
@@ -102,7 +103,7 @@ public class Frames implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Calc calc = new Calc();
+
 
         for(int i=0; i<10; i++) {
             if(e.getSource() == numberButtons[i]) {
@@ -114,41 +115,30 @@ public class Frames implements ActionListener {
         }
         if(e.getSource()== addButton) {
             num1 = Double.parseDouble((textfield.getText()));
-            operator ='+';
+            operator = "+";
             textfield.setText("");
         }
         if(e.getSource()== subButton) {
             num1 = Double.parseDouble((textfield.getText()));
-            operator ='-';
+            operator = "-";
             textfield.setText("");
         }
         if(e.getSource()== mulButton) {
             num1 = Double.parseDouble((textfield.getText()));
-            operator ='x';
+            operator = "x";
             textfield.setText("");
         }
         if(e.getSource()== divButton) {
             num1 = Double.parseDouble((textfield.getText()));
-            operator ='/';
+            operator = "/";
             textfield.setText("");
         }
         if(e.getSource() == equButton) {
 
             num2 = Double.parseDouble(textfield.getText());
-            switch(operator){
-                case'+':
-                    result = calc.som(num1, num2);
-                    break;
-                case'-':
-                    result = calc.sub(num1, num2);
-                    break;
-                case'x':
-                    result = calc.mult(num1, num2);
-                    break;
-                case'/':
-                    result = calc.div(num1, num2);
-                    break;
-            }
+            Operational operational = CalcFactory.getInstance(operator);
+            result = operational.execute(num1,num2);
+            CalcFactory.getInstance(operator);
             textfield.setText(String.valueOf(result));
             num1 = result;
 
