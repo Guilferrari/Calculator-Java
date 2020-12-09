@@ -56,14 +56,14 @@ public class Frames implements ActionListener {
             functionButtons[8] = negButton;
 
             for (int i = 0; i < 9; i++) {
-                functionButtons[i].addActionListener((ActionListener) this);
+                functionButtons[i].addActionListener(this);
                 functionButtons[i].setFont(myFont);
                 functionButtons[i].setFocusable(false);
             }
 
             for (int i = 0; i < 10; i++) {
                 numberButtons[i] = new JButton(String.valueOf(i));
-                numberButtons[i].addActionListener((ActionListener) this);
+                numberButtons[i].addActionListener(this);
                 numberButtons[i].setFont(myFont);
                 numberButtons[i].setFocusable(false);
             }
@@ -104,7 +104,6 @@ public class Frames implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
 
-
         for(int i=0; i<10; i++) {
             if(e.getSource() == numberButtons[i]) {
                 textfield.setText(textfield.getText().concat(String.valueOf(i)));
@@ -138,7 +137,6 @@ public class Frames implements ActionListener {
             num2 = Double.parseDouble(textfield.getText());
             Operational operational = CalcFactory.getInstance(operator);
             result = operational.execute(num1,num2);
-            CalcFactory.getInstance(operator);
             textfield.setText(String.valueOf(result));
             num1 = result;
 
@@ -161,6 +159,5 @@ public class Frames implements ActionListener {
         }
 
     }
-
 
 }

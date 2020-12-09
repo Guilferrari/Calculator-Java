@@ -19,7 +19,6 @@ public class CalcFactory {
                 default:
                     return null;
 
-
         }
     }
 }
