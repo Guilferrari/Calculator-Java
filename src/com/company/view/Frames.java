@@ -12,8 +12,8 @@ public class Frames implements ActionListener {
     JFrame frame;
     JTextField textfield;
     JButton[] numberButtons = new JButton[10];
-    JButton[] functionButtons = new JButton[9];
-    JButton addButton,subButton,mulButton,divButton;
+    JButton[] functionButtons = new JButton[10];
+    JButton addButton,subButton,mulButton,divButton,perButton;
     JButton decButton,equButton,delButton,clrButton,negButton;
     JPanel panel;
 
@@ -44,6 +44,7 @@ public class Frames implements ActionListener {
             delButton = new JButton("<-");
             clrButton = new JButton("C");
             negButton = new JButton("(-)");
+            perButton = new JButton("%");
 
             functionButtons[0] = addButton;
             functionButtons[1] = subButton;
@@ -54,8 +55,9 @@ public class Frames implements ActionListener {
             functionButtons[6] = delButton;
             functionButtons[7] = clrButton;
             functionButtons[8] = negButton;
+            functionButtons[9] = perButton;
 
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < 10; i++) {
                 functionButtons[i].addActionListener(this);
                 functionButtons[i].setFont(myFont);
                 functionButtons[i].setFocusable(false);
@@ -68,10 +70,10 @@ public class Frames implements ActionListener {
                 numberButtons[i].setFocusable(false);
             }
 
-            equButton.setBounds(205, 348, 145, 52);
+            equButton.setBounds(282, 348, 65, 52);
             panel = new JPanel();
             panel.setBounds(50, 100, 300, 300);
-            panel.setLayout(new GridLayout(5, 4, 10, 10));
+            panel.setLayout(new GridLayout(5, 5, 10, 10));
 
             panel.add(clrButton);
             panel.add(divButton);
@@ -91,7 +93,9 @@ public class Frames implements ActionListener {
             panel.add(equButton);
             panel.add(decButton);
             panel.add(negButton);
+            panel.add(perButton);
             panel.add(numberButtons[0]);
+
 
             frame.add(equButton);
             frame.add(panel);
@@ -130,6 +134,11 @@ public class Frames implements ActionListener {
         if(e.getSource()== divButton) {
             num1 = Double.parseDouble((textfield.getText()));
             operator = "/";
+            textfield.setText("");
+        }
+        if(e.getSource()== perButton) {
+            num1 = Double.parseDouble((textfield.getText()));
+            operator = "%";
             textfield.setText("");
         }
         if(e.getSource() == equButton) {

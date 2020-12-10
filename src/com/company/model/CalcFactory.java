@@ -16,6 +16,9 @@ public class CalcFactory {
             case "/":
                 return new Division();
 
+            case "%":
+                return new Percentage();
+
                 default:
                     return null;
 
